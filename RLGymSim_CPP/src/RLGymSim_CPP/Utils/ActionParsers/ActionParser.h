@@ -10,7 +10,14 @@ namespace RLGSC {
 	public:
 		typedef IList Input;
 
-		virtual ActionSet ParseActions(const Input& actionsData, const GameState& gameState) = 0;
-		virtual int GetActionAmount() = 0;
+		virtual ActionSet ParseActions(const Input& actionsData, const GameState& gameState) {
+			RG_ERR_CLOSE(typeid(*this).name() << ": ParseActions() is unimplemented");
+			return {};
+		}
+
+		virtual int GetActionAmount() {
+			RG_ERR_CLOSE(typeid(*this).name() << ": GetActionAmount() is unimplemented");
+			return {};
+		}
 	};
 }

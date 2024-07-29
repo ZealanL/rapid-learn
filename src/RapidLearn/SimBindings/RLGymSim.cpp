@@ -9,6 +9,7 @@
 #include <RLGymSim_CPP/Utils/OBSBuilders/DefaultOBSPadded.h>
 #include <RLGymSim_CPP/Utils/StateSetters/KickoffState.h>
 #include <RLGymSim_CPP/Utils/StateSetters/RandomState.h>
+#include <RLGymSim_CPP/Utils/ActionParsers/DefaultAction.h>
 
 using namespace RLGSC;
 
@@ -220,7 +221,7 @@ public:
 		PYBIND11_OVERRIDE_PURE(void, TPyStateSetter, reset, state);
 	}
 };
-RPLC_ADD_BIND(StateSetters) {
+RPLC_ADD_BIND(States) {
 #define PYB_CUR_CLASS StateSetter
 	pyb::class_<StateSetter, std::shared_ptr<StateSetter>>(m, "BaseStateSetter")
 		PYB_DEFAULT_INIT();
@@ -236,4 +237,39 @@ RPLC_ADD_BIND(StateSetters) {
 		PYB_DEFAULT_INIT();
 	PYB_CLASS_MVB(states, RandomState, StateSetter)
 		.def(pyb::init<bool, bool, bool>(), PYBA("rand_ball_speed"), PYBA("rand_car_speed"), PYBA("cars_on_ground"));
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+class PyActionParser : public ActionParser {
+public:
+	PYB_V_WRAP(ActionSet, ActionParser, ParseActions, parse_actions, (const Input& actionsData, const GameState& state), (actionsData, state));
+	PYB_V_WRAP(int, ActionParser, GetActionAmount, get_action_amount, (), ());
+};
+class TPyActionParser : public PyActionParser {
+public:
+	virtual ActionSet parse_actions(const Input& actionsData, const GameState& state) {
+		PYBIND11_OVERRIDE(ActionSet, TPyActionParser, parse_actions, actionsData, state);
+	}
+
+	virtual int get_action_amount() {
+		PYBIND11_OVERRIDE(int, TPyActionParser, get_action_amount);
+	}
+};
+
+RPLC_ADD_BIND(Acts) {
+#define PYB_CUR_CLASS ActionParser
+	pyb::class_<ActionParser, std::shared_ptr<ActionParser>>(m, "BaseActionParser")
+		PYB_DEFAULT_INIT();
+
+#define PYB_CUR_CLASS PyActionParser
+	pyb::class_<PyActionParser, TPyActionParser, ActionParser, std::shared_ptr<PyActionParser>>(m, "ActionParser")
+		PYB_DEFAULT_INIT()
+		.def(PYB_M(parse_actions))
+		.def(PYB_M(get_action_amount))
+		;
+
+	auto acts = m.def_submodule("acts");
+	PYB_CLASS_MVB(acts, DefaultAction, ActionParser)
+		PYB_DEFAULT_INIT();
 }

@@ -4,12 +4,12 @@
 namespace RLGSC {
 
 	// Based on https://github.com/Rolv-Arild/Necto/blob/master/training/parser.py
-	class DiscreteAction : public ActionParser {
+	class DefaultAction : public ActionParser {
 	public:
 
 		std::vector<Action> actions;
 
-		DiscreteAction();
+		DefaultAction();
 
 		virtual ActionSet ParseActions(const Input& actionsData, const GameState& gameState) {
 			ActionSet result;

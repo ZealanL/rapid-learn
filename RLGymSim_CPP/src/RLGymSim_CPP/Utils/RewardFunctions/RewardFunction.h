@@ -12,7 +12,7 @@ namespace RLGSC {
 
 		virtual float GetReward(const PlayerData& player, const GameState& state) {
 			RG_ERR_CLOSE(typeid(*this).name() << ": GetReward() is unimplemented. Either implement it or override GetAllRewards().");
-			return 0;
+			return {};
 		}
 
 		// Get all rewards for all players

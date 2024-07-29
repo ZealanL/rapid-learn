@@ -1,6 +1,6 @@
-#include "DiscreteAction.h"
+#include "DefaultAction.h"
 
-RLGSC::DiscreteAction::DiscreteAction() {
+RLGSC::DefaultAction::DefaultAction() {
 	Action a = {};
 
 	constexpr float
@@ -62,7 +62,7 @@ RLGSC::DiscreteAction::DiscreteAction() {
 	static std::once_flag onceFlag;
 	std::call_once(onceFlag, 
 		[=] {
-			RG_LOG("DiscreteAction(): Lookup table built, action count: " << actions.size());
+			RG_LOG("DefaultAction(): Lookup table built, action count: " << actions.size());
 		}
 	);
 }

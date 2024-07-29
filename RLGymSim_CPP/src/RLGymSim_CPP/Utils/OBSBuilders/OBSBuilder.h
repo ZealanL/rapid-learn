@@ -14,6 +14,7 @@ namespace RLGSC {
 		// NOTE: May be called once during environment initialization to determine policy neuron size
 		virtual FList BuildObs(const PlayerData& player, const GameState& state) {
 			RG_ERR_CLOSE(typeid(*this).name() << ": BuildObs() is unimplemented");
+			return {};
 		}
 	};
 }
