@@ -55,3 +55,9 @@ ___*
 
 # Don't include libtorch if in local dir
 libtorch
+
+# IntelliJ folde
+.idea/
+
+# wandb folders
+wandb/
