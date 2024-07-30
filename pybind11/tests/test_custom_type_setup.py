@@ -1,4 +1,4 @@
-from __future__ import annotations
+# -*- coding: utf-8 -*-
 
 import gc
 import weakref
@@ -9,7 +9,7 @@ import env  # noqa: F401
 from pybind11_tests import custom_type_setup as m
 
 
-@pytest.fixture()
+@pytest.fixture
 def gc_tester():
     """Tests that an object is garbage collected.
 

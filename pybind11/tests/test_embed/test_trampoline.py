@@ -1,4 +1,4 @@
-from __future__ import annotations
+# -*- coding: utf-8 -*-
 
 import trampoline_module
 

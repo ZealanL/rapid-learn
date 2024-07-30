@@ -7,14 +7,7 @@ if("${PYTHON_MODULE_EXTENSION}" MATCHES "pypy" OR "${Python_INTERPRETER_ID}" STR
   return()
 endif()
 
-if(TARGET Python::Module AND NOT TARGET Python::Python)
-  message(STATUS "Skipping embed test since no embed libs found")
-  add_custom_target(cpptest) # Dummy target since embedding is not supported.
-  set(_suppress_unused_variable_warning "${DOWNLOAD_CATCH}")
-  return()
-endif()
-
-find_package(Catch 2.13.9)
+find_package(Catch 2.13.2)
 
 if(CATCH_FOUND)
   message(STATUS "Building interpreter tests using Catch v${CATCH_VERSION}")
