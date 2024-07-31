@@ -201,7 +201,7 @@ RPLC_ADD_BIND(Obs) {
 	PYB_CLASS_MVB(obs, DefaultObs, ObsBuilder)
 		PYB_DEFAULT_INIT();
 	PYB_CLASS_MVB(obs, DefaultObsPadded, ObsBuilder)
-		.def(pyb::init<int>(), PYBA("max_players"));
+		.def(pyb::init<int>(), PYBA("max_players_per_team"));
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

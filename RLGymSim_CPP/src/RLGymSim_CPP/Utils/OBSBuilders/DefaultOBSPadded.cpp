@@ -38,15 +38,15 @@ RLGSC::FList RLGSC::DefaultObsPadded::BuildObs(const PlayerData& player, const G
 		((otherPlayer.team == player.team) ? teammates : opponents).push_back(playerObs);
 	}
 
-	if (teammates.size() > maxPlayers - 1)
-		RG_ERR_CLOSE("DefaultObsPadded: Too many teammates for Obs, maximum is " << (maxPlayers - 1));
+	if (teammates.size() > maxPlayersPerTeam - 1)
+		RG_ERR_CLOSE("DefaultObsPadded: Too many teammates for obs, maximum is " << (maxPlayersPerTeam - 1));
 	
-	if (opponents.size() > maxPlayers)
-		RG_ERR_CLOSE("DefaultObsPadded: Too many opponents for Obs, maximum is " << maxPlayers);
+	if (opponents.size() > maxPlayersPerTeam)
+		RG_ERR_CLOSE("DefaultObsPadded: Too many opponents for obs, maximum is " << maxPlayersPerTeam);
 
 	for (int i = 0; i < 2; i++) {
 		auto& playerList = i ? teammates : opponents;
-		int targetCount = i ? maxPlayers - 1 : maxPlayers;
+		int targetCount = i ? maxPlayersPerTeam - 1 : maxPlayersPerTeam;
 
 		while (playerList.size() < targetCount) {
 			FList pad = FList(playerObsSize);

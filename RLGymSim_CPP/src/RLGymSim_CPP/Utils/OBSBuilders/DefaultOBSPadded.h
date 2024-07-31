@@ -8,9 +8,9 @@ namespace RLGSC {
 	class DefaultObsPadded : public DefaultObs {
 	public:
 
-		int maxPlayers;
+		int maxPlayersPerTeam;
 
-		DefaultObsPadded(int maxPlayers) : DefaultObs(), maxPlayers(maxPlayers) {}
+		DefaultObsPadded(int maxPlayersPerTeam) : DefaultObs(), maxPlayersPerTeam(maxPlayersPerTeam) {}
 
 		virtual FList BuildObs(const PlayerData& player, const GameState& state);
 	};
