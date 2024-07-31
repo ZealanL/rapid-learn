@@ -5,26 +5,26 @@ namespace RLGSC {
 	class NoTouchCondition : public TerminalCondition {
 	public:
 
-		int stepsSinceTouch = 0;
-		int maxSteps;
+		float timeSinceTouch = 0;
+		float maxTime;
 
-		NoTouchCondition(int maxSteps) : maxSteps(maxSteps) {
+		NoTouchCondition(float maxTime) : maxTime(maxTime) {
 		}
 
 		virtual void Reset(const GameState& initialState) {
-			stepsSinceTouch = 0;
+			timeSinceTouch = 0;
 		};
 
 		virtual bool IsTerminal(const GameState& currentState) {
 			for (auto& player : currentState.players) {
 				if (player.ballTouchedStep) {
-					stepsSinceTouch = 0;
+					timeSinceTouch = 0;
 					return false;
 				}
 			}
 
-			stepsSinceTouch++;
-			return stepsSinceTouch >= maxSteps;
+			timeSinceTouch += currentState.deltaTime;
+			return timeSinceTouch >= maxTime;
 		}
 	};
 }
