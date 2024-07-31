@@ -5,6 +5,7 @@
 
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <pybind11/stl_bind.h>
 #include <pybind11/operators.h>
 #include <pybind11/functional.h>
 namespace pyb = pybind11;
@@ -69,10 +70,21 @@ void _BindInitFunc_##name(pyb::module& m)
 #define PYB_ENUM_VAL(val) .value(PYBS(#val), val)
 #define PYB_ENUM_END() .export_values()
 
-// Virtual override
+// Create wrapper
 #define PYB_V_WRAP(retType, className, funcName, pyName, defArgs, callArgs) \
 virtual retType pyName defArgs { return className::funcName callArgs; } \
 retType funcName defArgs override { return this->pyName callArgs; }
+
+// Create warpper with pyb object return
+#define PYB_V_WRAP_R(retType, className, funcName, pyName, defArgs, callArgs) \
+virtual pyb::object pyName defArgs { return className::funcName callArgs; } \
+retType funcName defArgs override { return this->pyName callArgs .cast<retType>(); }
+
+#define PYB_V_OVERRIDE(retType, className, funcName, defArgs, ...) \
+retType funcName(defArgs) override { PYBIND11_OVERRIDE(retType, className, funcName, __VA_ARGS__); }
+
+#define PYB_V_OVERRIDE_PURE(retType, className, funcName, defArgs, ...) \
+retType funcName defArgs override { PYBIND11_OVERRIDE_PURE(retType, className, funcName, __VA_ARGS__); }
 
 // TODO: Literally leaks memory, but should only be called once for each string, so its fine
 inline const char* PYB_MakePythonString(const char* name) {
