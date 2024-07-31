@@ -2,7 +2,7 @@
 
 namespace RLGSC {
 	void Match::EpisodeReset(const GameState& initialState) {
-		for (auto cond : terminalConditions)
+		for (auto cond : terminalConds)
 			cond->Reset(initialState);
 		rewardFn->Reset(initialState);
 		obsBuilder->Reset(initialState);
@@ -29,7 +29,7 @@ namespace RLGSC {
 	}
 
 	bool Match::IsDone(const GameState& state) {
-		for (auto& cond : terminalConditions)
+		for (auto& cond : terminalConds)
 			if (cond->IsTerminal(state))
 				return true;
 

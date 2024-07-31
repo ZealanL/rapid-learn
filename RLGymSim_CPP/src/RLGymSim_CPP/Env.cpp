@@ -49,7 +49,7 @@ namespace RLGSC {
 
 		match = Match(
 			cfg.rewardFn,
-			cfg.terminalConditions,
+			cfg.terminalConds,
 			cfg.obsBuilder,
 			cfg.actionParser,
 			cfg.stateSetter,

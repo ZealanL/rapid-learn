@@ -5,7 +5,7 @@ namespace RLGSC {
 
 	struct EnvConfig {
 		RG_SHR(RewardFunction) rewardFn = NULL;
-		std::vector<RG_SHR(TerminalCondition)> terminalConditions = {};
+		std::vector<RG_SHR(TerminalCondition)> terminalConds = {};
 		RG_SHR(ObsBuilder) obsBuilder = NULL;
 		RG_SHR(ActionParser) actionParser = NULL;
 		RG_SHR(StateSetter) stateSetter = NULL;

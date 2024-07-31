@@ -13,7 +13,7 @@ namespace RLGSC {
 	class Match {
 	public:
 		RG_SHR(RewardFunction) rewardFn;
-		std::vector<RG_SHR(TerminalCondition)> terminalConditions;
+		std::vector<RG_SHR(TerminalCondition)> terminalConds;
 		RG_SHR(ObsBuilder) obsBuilder;
 		RG_SHR(ActionParser) actionParser;
 		RG_SHR(StateSetter) stateSetter;
@@ -26,7 +26,7 @@ namespace RLGSC {
 
 		Match(
 			RG_SHR(RewardFunction) rewardFn,
-			std::vector<RG_SHR(TerminalCondition)> terminalConditions,
+			std::vector<RG_SHR(TerminalCondition)> terminalConds,
 			RG_SHR(ObsBuilder) obsBuilder,
 			RG_SHR(ActionParser) actionParser,
 			RG_SHR(StateSetter) stateSetter,
@@ -34,7 +34,7 @@ namespace RLGSC {
 			bool spawnOpponents = true
 		) :
 			rewardFn(rewardFn),
-			terminalConditions(terminalConditions),
+			terminalConds(terminalConds),
 			obsBuilder(obsBuilder),
 			actionParser(actionParser),
 			stateSetter(stateSetter),
