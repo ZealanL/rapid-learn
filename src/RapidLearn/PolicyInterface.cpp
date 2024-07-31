@@ -7,17 +7,11 @@ using namespace RLGSC;
 
 class PyPolicyInterface : public PolicyInterface {
 public:
-	virtual pyb::object get_actions(pyb::object allObs) {
-		return {};
-	}
-
-	ActionParser::Input GetActions(const FList2& allObs) override {
-		return get_actions(pyb::cast(allObs)).cast<ActionParser::Input>();
-	}
+	PYB_V_WRAP(ActionParser::Input, PolicyInterface, GetActions, get_actions, (const FList2& allObs), (allObs));
 };
 class TPyPolicyInterface : public PyPolicyInterface {
 public:
-	PYB_V_OVERRIDE_PURE(pyb::object, PyPolicyInterface, get_actions, (pyb::object allObs), allObs)
+	PYB_V_OVERRIDE_PURE(ActionParser::Input, PyPolicyInterface, get_actions, (const FList2& allObs), allObs)
 };
 RPLC_ADD_BIND(PolicyInterface) {
 	pyb::class_<PolicyInterface, RG_SHR(PolicyInterface)>(m, "BasePolicyInterface")
