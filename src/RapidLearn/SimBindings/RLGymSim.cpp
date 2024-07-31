@@ -48,6 +48,10 @@ RPLC_ADD_BIND(EnvConfig) {
 	PYB_CLASS(EnvConfig)
 		PYB_DEFAULT_INITS()
 		PYBP(rewardFn)
+		PYBP(terminalConds)
+		PYBP(obsBuilder)
+		PYBP(actionParser)
+		PYBP(stateSetter)
 		;
 }
 
