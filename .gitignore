@@ -61,3 +61,6 @@ libtorch
 
 # wandb folders
 wandb/
+
+# Python output folder
+/python
