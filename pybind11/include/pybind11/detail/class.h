@@ -188,6 +188,9 @@ extern "C" inline PyObject *pybind11_meta_call(PyObject *type, PyObject *args, P
         return nullptr;
     }
 
+	auto instance = reinterpret_cast<detail::instance*>(self);
+	instance->is_alias = instance->has_alias;
+
     // Ensure that the base __init__ function(s) were called
     values_and_holders vhs(self);
     for (const auto &vh : vhs) {
