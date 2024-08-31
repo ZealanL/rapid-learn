@@ -16,6 +16,8 @@ namespace RLGSC {
 
 	// https://github.com/AechPro/rocket-league-gym-sim/blob/main/rlgym_sim/utils/gamestates/player_data.py
 	struct PlayerData : PhysObj {
+
+		int index; // Index in gamestate array
 		uint32_t carId;
 		Team team;
 

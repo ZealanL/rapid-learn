@@ -20,9 +20,9 @@ RPLC_ADD_BIND(Team) {
 		;
 }
 
-PYB_INIT_F(MathTypes) {
+RPLC_ADD_BIND(MathTypes) {
 #define PYB_CUR_CLASS Vec
-	PYB_CLASS(Vec)
+	PYB_CLASS_BUF(Vec)
 		PYB_DEFAULT_INITS()
 		.def(pyb::init<float, float, float>(), PYBA("x"), PYBA("y"), PYBA("z"))
 		PYBP(x)

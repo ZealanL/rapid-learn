@@ -41,7 +41,6 @@ namespace RLGSC {
 				for (int j = 0; j < rewards.size(); j++)
 					allRewards[j] += rewards[j] * rewardWeights[i];
 			}
-
 			return allRewards;
 		}
 	};

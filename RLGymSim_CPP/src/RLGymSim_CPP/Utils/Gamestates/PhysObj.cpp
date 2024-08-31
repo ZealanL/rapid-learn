@@ -19,8 +19,7 @@ RLGSC::PhysObj::PhysObj(const CarState& carState) {
 RLGSC::PhysObj RLGSC::PhysObj::Invert() const {
 	PhysObj result = *this;
 
-	constexpr Vec invVec = Vec(-1, -1, 1);
-
+	constexpr Vec invVec = Vec(-1, -1,  1);
 	result.pos *= invVec;
 	for (int i = 0; i < 3; i++)
 		result.rotMat[i] *= invVec;

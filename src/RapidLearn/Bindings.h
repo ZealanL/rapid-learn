@@ -33,11 +33,12 @@ void _BindInitFunc_##name(pyb::module& m)
 #define PYB_CUR_CLASS null
 
 #define PYB_CLASS(className) pyb::class_<className>(m, #className)
+#define PYB_CLASS_BUF(className) pyb::class_<className>(m, #className, pyb::buffer_protocol())
 #define PYB_CLASS_SH(className) pyb::class_<className, std::shared_ptr<className>>(m, #className)
 #define PYB_CLASS_M(mod, className) pyb::class_<className>(mod, #className)
 #define PYB_CLASS_MVB(mod, className, baseName) pyb::class_<className, std::shared_ptr<className>, baseName>(mod, #className)
 #define PYB_CLASS_V(className, trampolineClassName) pyb::class_<className, std::shared_ptr<className>, trampolineClassName>(m, #className)
-#define PYB_INIT_F(name) void PYB_INIT_##name(pyb::module& m)
+//#define PYB_INIT_F(name) void PYB_INIT_##name(pyb::module& m)
 
 // Add default constuctor
 #define PYB_DEFAULT_INIT() .def(pyb::init<>())

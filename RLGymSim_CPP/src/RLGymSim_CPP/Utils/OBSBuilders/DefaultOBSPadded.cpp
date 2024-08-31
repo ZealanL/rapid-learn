@@ -5,7 +5,7 @@ RLGSC::FList RLGSC::DefaultObsPadded::BuildObs(const PlayerData& player, const G
 
 	bool inv = player.team == Team::ORANGE;
 
-	auto& ball = state.GetBallPhys(inv);
+	auto ball = state.ball.GetInvert(inv);
 	auto& pads = state.GetBoostPads(inv);
 
 	result += ball.pos * POS_COEF;

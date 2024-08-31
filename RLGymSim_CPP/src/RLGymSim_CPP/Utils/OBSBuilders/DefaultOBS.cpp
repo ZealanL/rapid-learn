@@ -3,11 +3,11 @@
 void RLGSC::DefaultObs::AddPlayerToObs(FList& obs, const PlayerData& player, bool inv) {
 	PhysObj phys = player.GetInvert(inv);
 
-	obs += phys.pos * POS_COEF;
+	obs += phys.pos / POS_COEF;
 	obs += phys.rotMat.forward;
 	obs += phys.rotMat.up;
-	obs += phys.vel * VEL_COEF;
-	obs += phys.angVel * ANG_VEL_COEF,
+	obs += phys.vel / VEL_COEF;
+	obs += phys.angVel / ANG_VEL_COEF,
 		
 	obs += {
 		player.boostFraction,
@@ -22,12 +22,12 @@ RLGSC::FList RLGSC::DefaultObs::BuildObs(const PlayerData& player, const GameSta
 
 	bool inv = player.team == Team::ORANGE;
 
-	auto& ball = state.GetBallPhys(inv);
+	auto ball = state.ball.GetInvert(inv);
 	auto& pads = state.GetBoostPads(inv);
 
-	result += ball.pos * POS_COEF;
-	result += ball.vel * VEL_COEF;
-	result += ball.angVel * ANG_VEL_COEF;
+	result += ball.pos / POS_COEF;
+	result += ball.vel / VEL_COEF;
+	result += ball.angVel / ANG_VEL_COEF;
 
 	for (int i = 0; i < player.prevAction.ELEM_AMOUNT; i++)
 		result += player.prevAction[i];

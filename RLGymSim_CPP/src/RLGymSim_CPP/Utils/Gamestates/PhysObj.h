@@ -4,6 +4,8 @@
 namespace RLGSC {
 	// https://github.com/AechPro/rocket-league-gym-sim/blob/main/rlgym_sim/utils/gamestates/physics_object.py
 	struct PhysObj {
+		const struct GameState* _state;
+
 		Vec pos;
 		RotMat rotMat;
 		Vec vel, angVel;

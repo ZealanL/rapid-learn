@@ -97,7 +97,6 @@ namespace RLGSC {
 
 		prevState.prev = NULL;
 		ActionSet actions = match.ParseActions(actionsData, prevState);
-
 		GameState state;
 
 		{ // Step arena with actions
@@ -110,7 +109,6 @@ namespace RLGSC {
 			// Clear all flags
 			for (auto& player : prevState.players)
 				player.flags = {};
-
 			arena->Step(tickSkip - actionDelay);
 			if (arena->gameMode != GameMode::HEATSEEKER)
 				eventTracker.Update(arena);

@@ -14,7 +14,8 @@ namespace RLGSC {
 
 		carState = newState;
 
-		PhysObj::PhysObj(carState);
+		// TODO: Messy
+		*(PhysObj*)this = PhysObj(carState);
 
 		if (carState.ballHitInfo.isValid) {
 			ballTouchedStep = carState.ballHitInfo.tickCountWhenHit >= (tickCount - tickSkip);

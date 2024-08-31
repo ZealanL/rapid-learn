@@ -31,7 +31,7 @@ namespace RLGSC {
 		std::vector<PlayerData> players;
 
 		BallState ballState;
-		PhysObj ball, ballInv;
+		PhysObj ball;
 
 		std::array<bool, CommonValues::BOOST_LOCATIONS_AMOUNT> boostPads, boostPadsInv;
 		std::array<float, CommonValues::BOOST_LOCATIONS_AMOUNT> boostPadTimers, boostPadTimersInv;
@@ -47,10 +47,6 @@ namespace RLGSC {
 		GameState() = default;
 		explicit GameState(Arena* arena) {
 			UpdateFromArena(arena, NULL);
-		}
-
-		const PhysObj& GetBallPhys(bool inverted) const {
-			return inverted ? ballInv : ball;
 		}
 
 		const auto& GetBoostPads(bool inverted) const {

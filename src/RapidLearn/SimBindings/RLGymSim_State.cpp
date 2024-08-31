@@ -27,9 +27,10 @@ RPLC_ADD_BIND(PhysObj) {
 
 RPLC_ADD_BIND(PlayerData) {
 #define PYB_CUR_CLASS RLGSC::PlayerData
-	PYB_CLASS(PlayerData)
+	pyb::class_<PlayerData, PhysObj>(m, "PlayerData")
 		PYB_DEFAULT_INITS()
 
+		PYBPR(index)
 		PYBPR(carId)
 		PYBPR(team)
 		.def_property_readonly("team_num", [](const PlayerData& playerData) { return (int)playerData.team; })
@@ -76,7 +77,7 @@ RPLC_ADD_BIND(GameState) {
 		PYBPR(lastTouchCarID)
 
 		PYBP(players)
-		PYBP(ball) PYBP(ballInv)
+		PYBP(ball)
 
 		PYBPR(boostPads) PYBPR(boostPadsInv)
 		PYBPR(boostPadTimers) PYBPR(boostPadTimersInv)

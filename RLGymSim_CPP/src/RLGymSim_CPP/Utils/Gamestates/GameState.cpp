@@ -65,13 +65,13 @@ void RLGSC::GameState::UpdateFromArena(Arena* arena, const GameState* prev) {
 
 	ballState = arena->ball->GetState();
 	ball = PhysObj(ballState);
-	ballInv = ball.Invert();
 
 	players.resize(arena->_cars.size());
 
 	auto carItr = arena->_cars.begin();
 	for (int i = 0; i < players.size(); i++) {
 		auto& player = players[i];
+		player.index = i;
 		player.UpdateFromCar(*carItr, arena->tickCount, tickSkip);
 		if (player.ballTouchedStep)
 			lastTouchCarID = player.carId;
